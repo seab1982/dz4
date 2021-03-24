@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <?php
+/* Создать интерфейсы и реализации к ним
+
+тип кузова
+колесная формула
+тип двигателя
+тип коробки передач
+(можно использовать код предыдущего урока)
+
+Создать трейт производящий расчет мощности в зависимости от объема двигателя и типа двигателя */
+
+interface Body
+{
+    public function getFormBody():string;
+
+}
+
+interface Shassi
+{
+    public function getTypeShassi():int;
+
+}
+
+interface Motor
+{
+    public function getTypeMotor():int;
+    public function getTypeTurbo():int;
+
+}
+
+interface Transmission
+{
+    public function getTypeTransmission():string;
+
+}
+
+trait PowerOfMotor
+{
+    function calcPowerD(int $motor, int $turbo): int
+    {
+        return ($motor + $motor*$turbo);
+    }
+}
+ class Transport implements Body, Shassi, Motor, Transmission
+{
+    use PowerOfMotor;
+
+
+
+     protected  $body = "kupe";
+     protected $shassi = "4x4";
+     protected  $motor = "4";
+     protected $turbo = "0";
+     protected $transmission = "auto";
+
+     public function getFormBodyBody():string
+     {
+         return $this->body;
+     }
+     public function getTypeShassi(): int
+     {
+         return $this->shassi;
+     }
+
+     public function getTypeMotor(): int
+     {
+         return $this->motor;
+     }
+
+     public function getTypeTurbo(): int
+     {
+         return $this->turbo;
+     }
+
+     public function getTypeTransmission(): string
+     {
+         return $this->transmission;
+     }
+
+ }
+
+class Car extends Transport
+{
+    /**
+     * @param string $body
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+    };
+    /**
+     * @param string $motor
+     */
+    public function setMotor($motor)
+    {
+        $this->motor = $motor;
+    };
+
+    /**
+     * @param string $shassi
+     */
+    public function setShassi($shassi)
+    {
+        $this->shassi = $shassi;
+    };
+    public function setTurbo($turbo)
+    {
+        $this->turbo = $turbo;
+    };
+
+    /**
+     * @param string $transmission
+     */
+    public function setTransmission($transmission)
+    {
+        $this->transmission = $transmission;
+    };
+
+}
+
+?>
+    
+</body>
+</html>
